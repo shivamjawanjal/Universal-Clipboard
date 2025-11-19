@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Universal Clipboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body style="font-family: Arial; padding: 20px;">
+
+<h2>Universal Clipboard (Phone ↔ Laptop)</h2>
+<p>Enter same Room ID on both devices to sync clipboard.</p>
+
+<input id="room" placeholder="Room ID" style="padding:8px; width:60%;">
+<button onclick="saveRoom()">Join</button>
+
+<br><br>
+
+<button onclick="enableAutoCopy()">Enable Auto-Copy on this device</button>
+
+<h3>Incoming Text:</h3>
+<div id="incoming" style="border:1px solid #aaa; padding:10px; min-height:80px;"></div>
+
+<h3>Send Text:</h3>
+<textarea id="sendText" style="width:100%; height:80px;"></textarea>
+<button onclick="sendText()">Send to Room</button>
+
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+
+<script>
+// ---- YOUR FIREBASE CONFIG HERE ----
+const firebaseConfig = {
+  apiKey: "YOUR_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  databaseURL: "https://YOUR_PROJECT-default-rtdb.firebaseio.com",
+  projectId: "YOUR_PROJECT",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "SENDER",
+  appId: "APPID"
+};
+// ------------------------------------
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+let room = "default";
+let autoCopy = false;
+
+// Save selected room
+function saveRoom() {
+  room = document.getElementById("room").value;
+  listenRoom();
+  alert("Joined Room: " + room);
+}
+
+// Listen for incoming clipboard data
+function listenRoom() {
+  firebase.database().ref("rooms/" + room).on("value", async (snap) => {
+    const data = snap.val();
+    if (!data) return;
+
+    document.getElementById("incoming").innerText = data.text;
+
+    if (autoCopy) {
+      try {
+        await navigator.clipboard.writeText(data.text);
+        console.log("Auto copied to clipboard");
+      } catch (e) {
+        console.log("Auto copy failed", e);
+      }
+    }
+  });
+}
+
+// Send typed text to room
+function sendText() {
+  const text = document.getElementById("sendText").value;
+  firebase.database().ref("rooms/" + room).set({
+    text: text,
+    time: Date.now()
+  });
+}
+
+// Auto copy permission
+function enableAutoCopy() {
+  autoCopy = true;
+  alert("Auto copy enabled. Will copy incoming text to clipboard.");
+}
+
+// Detect CTRL+C or mobile copy
+document.addEventListener("copy", () => {
+  let selectedText = document.getSelection().toString();
+  if (selectedText.length > 0) {
+    firebase.database().ref("rooms/" + room).set({
+      text: selectedText,
+      time: Date.now()
+    });
+  }
+});
+</script>
+
+</body>
+</html>

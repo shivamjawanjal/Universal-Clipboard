@@ -1,0 +1,11 @@
+--- FILE: firebase-rules.txt ---
+{
+  "rules": {
+    "rooms": {
+      "$room": {
+        ".read": true,
+        ".write": true
+      }
+    }
+  }
+}

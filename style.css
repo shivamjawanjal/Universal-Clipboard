@@ -1,0 +1,7 @@
+/* small custom tweaks */
+:root { --bg: #0f172a; }
+html.light body { background: #f8fafc; color: #0f172a; }
+
+/* keep textarea looking nice */
+textarea { resize: vertical; }
+

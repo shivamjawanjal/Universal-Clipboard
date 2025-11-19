@@ -1,7 +1,144 @@
-/* small custom tweaks */
-:root { --bg: #0f172a; }
-html.light body { background: #f8fafc; color: #0f172a; }
+/* Custom styles for Universal Clipboard */
+:root {
+  --bg-dark: #0f172a;
+  --bg-light: #f8fafc;
+}
 
-/* keep textarea looking nice */
-textarea { resize: vertical; }
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
 
+/* Light theme */
+html.light body {
+  background: var(--bg-light);
+  color: #1e293b;
+}
+
+html.light .bg-slate-800 {
+  background-color: #e2e8f0;
+}
+
+html.light .bg-slate-700 {
+  background-color: #cbd5e1;
+}
+
+html.light .bg-slate-900 {
+  background-color: #f1f5f9;
+}
+
+html.light input,
+html.light textarea {
+  background-color: #ffffff;
+  color: #1e293b;
+  border: 1px solid #cbd5e1;
+}
+
+/* Loading state */
+.loading {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+/* Scrollbar styling */
+#history::-webkit-scrollbar {
+  width: 6px;
+}
+
+#history::-webkit-scrollbar-track {
+  background: #334155;
+  border-radius: 3px;
+}
+
+#history::-webkit-scrollbar-thumb {
+  background: #64748b;
+  border-radius: 3px;
+}
+
+html.light #history::-webkit-scrollbar-track {
+  background: #cbd5e1;
+}
+
+html.light #history::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+}
+
+/* QR code container */
+#qrBox {
+  transition: all 0.3s ease;
+}
+
+/* Button hover effects */
+button {
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  filter: brightness(110%);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* Toast animations */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.fixed.bottom-4.right-4 {
+  animation: slideIn 0.3s ease, slideOut 0.3s ease 1.7s;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .max-w-3xl {
+    margin: 0 auto;
+    padding: 1rem;
+  }
+  
+  .grid.lg\:grid-cols-2 {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .flex.gap-2 {
+    flex-wrap: wrap;
+  }
+  
+  button {
+    min-height: 44px; /* Better touch targets */
+  }
+}
+
+/* Focus styles for accessibility */
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #0ea5a4;
+  outline-offset: 2px;
+}
+
+/* Selection styles */
+::selection {
+  background-color: #0ea5a4;
+  color: white;
+}

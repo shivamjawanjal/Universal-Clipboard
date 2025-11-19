@@ -1,10 +1,18 @@
---- FILE: firebase-rules.txt ---
 {
   "rules": {
     "rooms": {
       "$room": {
         ".read": true,
-        ".write": true
+        ".write": true,
+        ".validate": "newData.hasChildren(['clipboard']) || newData.hasChildren(['history'])",
+        "clipboard": {
+          ".validate": "newData.hasChildren(['text', 'ts', 'encrypted']) && newData.child('ts').isNumber() && newData.child('encrypted').isBoolean()"
+        },
+        "history": {
+          "$item": {
+            ".validate": "newData.hasChildren(['text', 'ts', 'encrypted']) && newData.child('ts').isNumber() && newData.child('encrypted').isBoolean()"
+          }
+        }
       }
     }
   }

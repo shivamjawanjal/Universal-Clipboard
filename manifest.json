@@ -1,12 +1,23 @@
 {
   "name": "Universal Clipboard",
   "short_name": "ClipSync",
+  "description": "Sync clipboard content between devices securely",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0f172a",
   "theme_color": "#0ea5a4",
+  "orientation": "any",
+  "categories": ["productivity", "utilities"],
   "icons": [
-    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiByeD0iMjQiIGZpbGw9IiMwZWE1YTQiLz4KPHBhdGggZD0iTTY0IDY0SDEyOFYxMjhINjRWMTI4WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTk2IDMyVjY0TTY0IDk2SDMyTTY0IDEyOEgzMk0xMjggOTZIMTYwTTEyOCAxMjhIMTYwTTk2IDE2MFYxMjgiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiByeD0iNjQiIGZpbGw9IiMwZWE1YTQiLz4KPHBhdGggZD0iTTE3MCAxNzBIMzQyVjM0MkgxNzBWMzQyWiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTI1NiA4NVYxNzBNMTcwIDI1NUg4NU0xNzAgMzQySDg1TTM0MiAyNTVINDI3TTM0MiAzNDJINDI3TTI1NiA0MjdWMzQyIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjE2IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+Cg==",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
   ]
 }
